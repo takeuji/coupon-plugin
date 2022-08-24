@@ -17,7 +17,6 @@ use Doctrine\ORM\EntityManagerInterface;
 use Eccube\Entity\Order;
 use Eccube\Event\TemplateEvent;
 use Eccube\Repository\OrderRepository;
-use Plugin\Coupon42\Entity\Coupon;
 use Plugin\Coupon42\Repository\CouponOrderRepository;
 use Plugin\Coupon42\Repository\CouponRepository;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -48,26 +47,19 @@ class Event implements EventSubscriberInterface
     private $orderRepository;
 
     /**
-     * @var \Twig_Environment
-     */
-    private $twig;
-
-    /**
      * Event constructor.
      *
      * @param CouponOrderRepository $couponOrderRepository
      * @param EntityManagerInterface $entityManager
      * @param CouponRepository $couponRepository
      * @param OrderRepository $orderRepository
-     * @param \Twig_Environment $twig
      */
-    public function __construct(CouponOrderRepository $couponOrderRepository, EntityManagerInterface $entityManager, CouponRepository $couponRepository, OrderRepository $orderRepository, \Twig_Environment $twig)
+    public function __construct(CouponOrderRepository $couponOrderRepository, EntityManagerInterface $entityManager, CouponRepository $couponRepository, OrderRepository $orderRepository)
     {
         $this->couponOrderRepository = $couponOrderRepository;
         $this->entityManager = $entityManager;
         $this->couponRepository = $couponRepository;
         $this->orderRepository = $orderRepository;
-        $this->twig = $twig;
     }
 
     /**
